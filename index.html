@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="3D Uy Platforma — zamonaviy uy qidirish va 3D ko'rish">
+    <title>3D Uy Platforma | Samarqand Kvartiralar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%232b6cb0' width='100' height='100'/%3E%3Ctext x='50' y='60' font-size='60' fill='white' text-anchor='middle' font-family='Arial'%3E🏠%3C/text%3E%3C/svg%3E">
+    <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.150.0/examples/js/loaders/GLTFLoader.js"></script>
+    <style>
+        .hidden {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">🏠 3D Uy Platforma</div>
+            <div class="nav-links">
+                <a href="#houses" class="nav-link">Uylar</a>
+                <a href="#favorites" class="nav-link">Sevimlilar</a>
+                <a href="#orders" class="nav-link">Buyurtmalar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Samarqandning Eng Yaxshi Kvartiralarini Toping</h1>
+            <p class="hero-subtitle">3D ko'rish, filtrlash va instant buyurtma qilish</p>
+            <div class="hero-search">
+                <input id="hero-search" type="text" placeholder="Manzil, xona soni yoki narx qidiring...">
+                <button onclick="heroSearch()">🔍 Qidirish</button>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Filters Panel -->
+            <section class="panel filters-panel">
+                <h2 class="panel-title">🎯 Filtrlash</h2>
+                <div class="filter-group">
+                    <label>Xona soni:</label>
+                    <select id="rooms-filter">
+                        <option value="0">Barchasi</option>
+                        <option value="1">1 xona</option>
+                        <option value="2">2 xona</option>
+                        <option value="3">3 xona</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Maksimal narx:</label>
+                    <input id="max-price" type="number" placeholder="$" min="0">
+                </div>
+                <div class="filter-group">
+                    <label>Saralash:</label>
+                    <select id="sort">
+                        <option value="default">Asosiy</option>
+                        <option value="price-asc">Narx: past → yuqori</option>
+                        <option value="price-desc">Narx: yuqori → past</option>
+                        <option value="area-asc">Maydon: kichik → katta</option>
+                        <option value="area-desc">Maydon: katta → kichik</option>
+                    </select>
+                </div>
+                <button class="btn-primary" onclick="applyAllFilters(houses)">Filtrlang</button>
+                <button class="btn-secondary" onclick="clearAllFilters()">Tozalash</button>
+            </section>
+
+            <!-- Orders Panel -->
+            <section class="panel orders-panel">
+                <h2 class="panel-title">📋 Buyurtmalar</h2>
+                <div id="orders-list" class="orders-content">
+                    <p class="empty-state">Buyurtma yo'q</p>
+                </div>
+                <div class="panel-actions">
+                    <button class="btn-small" onclick="exportOrdersCSV()">📥 CSV</button>
+                    <button class="btn-small" onclick="clearOrders()">🗑 Tozalash</button>
+                </div>
+            </section>
+
+            <!-- Favorites Panel -->
+            <section class="panel favorites-panel">
+                <h2 class="panel-title">❤️ Sevimlilar</h2>
+                <div id="favorites-list" class="favorites-content">
+                    <p class="empty-state">Sevimlilar bo'sh</p>
+                </div>
+            </section>
+
+            <!-- AI Assistant Panel -->
+            <section class="panel assistant-panel">
+                <h2 class="panel-title">🤖 AI Yordamchi</h2>
+                <input id="assistant-query" type="text" placeholder="Savol bering (xona, narx...)"
+                    class="assistant-input">
+                <button class="btn-primary" onclick="askAssistant()">So'rash</button>
+                <div id="assistant-output" class="assistant-output">
+                    <p class="empty-state">Yordamchiga savol bering</p>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search & Sort Bar -->
+            <div class="top-bar">
+                <input id="search" type="search" placeholder="Qidirish: manzil, nom..." class="search-input">
+                <div class="top-bar-actions">
+                    <button id="view-toggle" class="btn-icon" title="Ko'rinish o'zgartirish">⊞</button>
+                </div>
+            </div>
+
+            <!-- Houses Grid -->
+            <div id="house-list" class="grid"></div>
+
+            <!-- House Detail Panel -->
+            <section id="info" class="info-panel hidden"></section>
+        </main>
+    </div>
+
+    <!-- 3D Viewer Modal -->
+    <div id="viewer-modal" class="modal hidden" role="dialog" aria-hidden="true">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>3D Ko'rish</h2>
+                <button id="close-viewer" class="close-btn">✕</button>
+            </div>
+            <div id="viewer" class="viewer-3d"></div>
+        </div>
+    </div>
+
+    <!-- Order Form Modal -->
+    <div id="order-modal" class="modal hidden" role="dialog" aria-hidden="true">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Buyurtma Formasi</h2>
+                <button class="close-btn" onclick="closeOrderModal()">✕</button>
+            </div>
+            <form id="order-form" class="order-form" onsubmit="handleOrderSubmit(event)">
+                <div class="form-group">
+                    <label>Ism Familya *</label>
+                    <input type="text" id="order-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon Raqam *</label>
+                    <input type="tel" id="order-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Email (ixtiyoriy)</label>
+                    <input type="email" id="order-email">
+                </div>
+                <div class="form-group">
+                    <label>Izoh</label>
+                    <textarea id="order-note" rows="3" placeholder="Maxsus talablar..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Buyurtmani Yuborish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 3D Uy Platforma | Samarqand | <a href="#">Qo'llab-quvvatlash</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e1bee7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a148c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7b1fa2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="400" height="300" fill="url(#grad1)"/>
+  
+  <!-- Ground -->
+  <rect y="200" width="400" height="100" fill="#558b2f"/>
+  
+  <!-- House body -->
+  <rect x="60" y="80" width="280" height="150" fill="#ffccbc" stroke="#d84315" stroke-width="2"/>
+  
+  <!-- Roof -->
+  <polygon points="60,80 200,20 340,80" fill="url(#grad2)" stroke="#7b1fa2" stroke-width="2"/>
+  
+  <!-- Door (left) -->
+  <rect x="100" y="160" width="50" height="70" fill="#8d6e63" stroke="#654321" stroke-width="2"/>
+  <circle cx="148" cy="195" r="3" fill="#ffd700"/>
+  
+  <!-- Door (right) -->
+  <rect x="250" y="160" width="50" height="70" fill="#8d6e63" stroke="#654321" stroke-width="2"/>
+  <circle cx="298" cy="195" r="3" fill="#ffd700"/>
+  
+  <!-- Windows row 1 -->
+  <rect x="90" y="110" width="35" height="35" fill="#b3e5fc" stroke="#01579b" stroke-width="1"/>
+  <line x1="107.5" y1="110" x2="107.5" y2="145" stroke="#01579b" stroke-width="1"/>
+  <line x1="90" y1="127.5" x2="125" y2="127.5" stroke="#01579b" stroke-width="1"/>
+  
+  <rect x="155" y="110" width="35" height="35" fill="#b3e5fc" stroke="#01579b" stroke-width="1"/>
+  <line x1="172.5" y1="110" x2="172.5" y2="145" stroke="#01579b" stroke-width="1"/>
+  <line x1="155" y1="127.5" x2="190" y2="127.5" stroke="#01579b" stroke-width="1"/>
+  
+  <rect x="220" y="110" width="35" height="35" fill="#b3e5fc" stroke="#01579b" stroke-width="1"/>
+  <line x1="237.5" y1="110" x2="237.5" y2="145" stroke="#01579b" stroke-width="1"/>
+  <line x1="220" y1="127.5" x2="255" y2="127.5" stroke="#01579b" stroke-width="1"/>
+  
+  <rect x="285" y="110" width="35" height="35" fill="#b3e5fc" stroke="#01579b" stroke-width="1"/>
+  <line x1="302.5" y1="110" x2="302.5" y2="145" stroke="#01579b" stroke-width="1"/>
+  <line x1="285" y1="127.5" x2="320" y2="127.5" stroke="#01579b" stroke-width="1"/>
+  
+  <!-- Chimney -->
+  <rect x="185" y="40" width="25" height="50" fill="#bf360c" stroke="#5d4037" stroke-width="1"/>
+  
+  <!-- Text -->
+  <text x="200" y="270" font-size="18" font-weight="bold" text-anchor="middle" fill="#333">2 XONALI UY</text>
+  <text x="200" y="290" font-size="12" text-anchor="middle" fill="#666">70 m² • $55,000</text>
+</svg>
