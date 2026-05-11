@@ -3,182 +3,219 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="3D Uy Platforma — zamonaviy uy qidirish va 3D ko'rish">
-    <title>3D Uy Platforma | Samarqand Kvartiralar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="3D Uy Platforma — Samarqanddagi uy va kvartiralarni 3D ko'rish, taqqoslash va tezkor bron qilish uchun premium proptech demo.">
+    <meta name="theme-color" content="#08111f">
+    <title>3D Uy Platforma | Startup Demo</title>
+    <link rel="preconnect" href="https://unpkg.com">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%232b6cb0' width='100' height='100'/%3E%3Ctext x='50' y='60' font-size='60' fill='white' text-anchor='middle' font-family='Arial'%3E🏠%3C/text%3E%3C/svg%3E">
-    <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.150.0/examples/js/loaders/GLTFLoader.js"></script>
-    <style>
-        .hidden {
-            display: none
-        }
-    </style>
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect rx='22' fill='%2308111f' width='100' height='100'/%3E%3Cpath d='M18 54 50 25l32 29v30H58V63H42v21H18z' fill='%234ee1a0'/%3E%3C/svg%3E">
+    <script defer src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
+    <script defer src="https://unpkg.com/three@0.150.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo">🏠 3D Uy Platforma</div>
-            <div class="nav-links">
-                <a href="#houses" class="nav-link">Uylar</a>
-                <a href="#favorites" class="nav-link">Sevimlilar</a>
-                <a href="#orders" class="nav-link">Buyurtmalar</a>
-            </div>
-        </div>
-    </nav>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+        <a class="brand" href="#top" aria-label="3D Uy Platforma bosh sahifa">
+            <span class="brand-mark">3D</span>
+            <span>
+                <strong>Uy Platforma</strong>
+                <small>AI + 3D real estate</small>
+            </span>
+        </a>
+        <nav class="nav-links" aria-label="Asosiy menyu">
+            <a href="#catalog">Katalog</a>
+            <a href="#analytics">Analitika</a>
+            <a href="#assistant">AI yordamchi</a>
+            <a href="#orders">Buyurtmalar</a>
+        </nav>
+        <button class="header-cta" data-scroll="#catalog">Demo ko'rish</button>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Samarqandning Eng Yaxshi Kvartiralarini Toping</h1>
-            <p class="hero-subtitle">3D ko'rish, filtrlash va instant buyurtma qilish</p>
-            <div class="hero-search">
-                <input id="hero-search" type="text" placeholder="Manzil, xona soni yoki narx qidiring...">
-                <button onclick="heroSearch()">🔍 Qidirish</button>
+    <main id="top">
+        <section class="hero section-shell">
+            <div class="hero-copy">
+                <span class="eyebrow">Samarqand proptech startup demo</span>
+                <h1>Uy tanlashni 3D tur, AI tavsiya va real-time taqqoslash bilan tezlashtiring.</h1>
+                <p>
+                    Platforma xaridorlarga ishonchli tanlov, sotuvchilarga esa leadlarni tartibli boshqarish imkonini
+                    beradi. Investor yoki hakam uchun tayyor: qiymat, maydon, joylashuv va ariza oqimi bitta panelda.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" data-scroll="#catalog">Uylarni ko'rish</button>
+                    <button class="btn btn-ghost" data-open-viewer="1">3D demo</button>
+                </div>
+                <div class="metrics" aria-label="Platforma ko'rsatkichlari">
+                    <article>
+                        <strong id="metric-count">0</strong>
+                        <span>premium obyekt</span>
+                    </article>
+                    <article>
+                        <strong>45s</strong>
+                        <span>tezkor bron</span>
+                    </article>
+                    <article>
+                        <strong>24/7</strong>
+                        <span>AI konsultant</span>
+                    </article>
+                </div>
             </div>
-        </div>
-        <div class="hero-bg"></div>
-    </section>
+            <div class="hero-visual" aria-label="Platforma vitrini">
+                <div class="floating-card lead-card">
+                    <span class="pulse"></span>
+                    <div>
+                        <strong>Yangi lead</strong>
+                        <small>+1 bron so'rovi · Registon Loft</small>
+                    </div>
+                </div>
+                <div class="phone-frame">
+                    <div class="phone-top"></div>
+                    <img src="images/house1.svg" alt="3D uy platformasi mobil ko'rinishi">
+                    <div class="phone-overlay">
+                        <span>AI tavsiya</span>
+                        <strong>92% mos</strong>
+                    </div>
+                </div>
+                <div class="floating-card price-card">
+                    <strong>$42k - $125k</strong>
+                    <small>Narx diapazoni</small>
+                </div>
+            </div>
+        </section>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <!-- Filters Panel -->
-            <section class="panel filters-panel">
-                <h2 class="panel-title">🎯 Filtrlash</h2>
-                <div class="filter-group">
-                    <label>Xona soni:</label>
-                    <select id="rooms-filter">
-                        <option value="0">Barchasi</option>
-                        <option value="1">1 xona</option>
-                        <option value="2">2 xona</option>
-                        <option value="3">3 xona</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Maksimal narx:</label>
-                    <input id="max-price" type="number" placeholder="$" min="0">
-                </div>
-                <div class="filter-group">
-                    <label>Saralash:</label>
+        <section id="analytics" class="section-shell insight-grid">
+            <article class="insight-card">
+                <span class="insight-icon">🧭</span>
+                <h2>Joylashuv bo'yicha baho</h2>
+                <p>Maktab, transport va markazga yaqinlik ballari xaridorga tez qaror qilishda yordam beradi.</p>
+            </article>
+            <article class="insight-card">
+                <span class="insight-icon">📈</span>
+                <h2>Investitsion ko'rsatkich</h2>
+                <p>Har bir obyekt uchun taxminiy ijara daromadi, ROI va likvidlik reytingi ko'rsatiladi.</p>
+            </article>
+            <article class="insight-card">
+                <span class="insight-icon">🥽</span>
+                <h2>Interaktiv 3D ko'rish</h2>
+                <p>Three.js asosidagi viewer model mavjud bo'lsa GLB faylni, aks holda zamonaviy maketni ko'rsatadi.</p>
+            </article>
+        </section>
+
+        <section id="catalog" class="workspace section-shell">
+            <aside class="control-panel" aria-label="Filtrlar va yordamchi">
+                <div class="panel-block">
+                    <div class="panel-heading">
+                        <span>🎯</span>
+                        <h2>Smart filtr</h2>
+                    </div>
+                    <label for="search">Qidiruv</label>
+                    <input id="search" type="search" placeholder="Nom, tuman, metro, maktab...">
+                    <div class="filter-grid">
+                        <label>Xona
+                            <select id="rooms-filter">
+                                <option value="0">Barchasi</option>
+                                <option value="1">1 xona</option>
+                                <option value="2">2 xona</option>
+                                <option value="3">3 xona</option>
+                                <option value="4">4+ xona</option>
+                            </select>
+                        </label>
+                        <label>Budjet
+                            <input id="max-price" type="number" min="0" step="1000" placeholder="Maks. $">
+                        </label>
+                    </div>
+                    <label for="sort">Saralash</label>
                     <select id="sort">
-                        <option value="default">Asosiy</option>
-                        <option value="price-asc">Narx: past → yuqori</option>
-                        <option value="price-desc">Narx: yuqori → past</option>
-                        <option value="area-asc">Maydon: kichik → katta</option>
-                        <option value="area-desc">Maydon: katta → kichik</option>
+                        <option value="match">Eng mos</option>
+                        <option value="price-asc">Narx: pastdan yuqoriga</option>
+                        <option value="price-desc">Narx: yuqoridan pastga</option>
+                        <option value="area-desc">Maydon: kattadan kichikka</option>
+                        <option value="roi-desc">ROI: yuqori</option>
                     </select>
+                    <div class="button-row">
+                        <button class="btn btn-primary" id="apply-filters">Filtrlash</button>
+                        <button class="btn btn-muted" id="clear-filters">Tozalash</button>
+                    </div>
                 </div>
-                <button class="btn-primary" onclick="applyAllFilters(houses)">Filtrlang</button>
-                <button class="btn-secondary" onclick="clearAllFilters()">Tozalash</button>
-            </section>
 
-            <!-- Orders Panel -->
-            <section class="panel orders-panel">
-                <h2 class="panel-title">📋 Buyurtmalar</h2>
-                <div id="orders-list" class="orders-content">
-                    <p class="empty-state">Buyurtma yo'q</p>
+                <div id="assistant" class="panel-block assistant-card">
+                    <div class="panel-heading">
+                        <span>🤖</span>
+                        <h2>AI yordamchi</h2>
+                    </div>
+                    <p>Masalan: “2 xonali 60000 gacha”, “eng katta maydon”, “investitsiya uchun”.</p>
+                    <div class="assistant-input-row">
+                        <input id="assistant-query" type="text" placeholder="Savolingizni yozing...">
+                        <button class="btn btn-primary" id="assistant-send">So'rash</button>
+                    </div>
+                    <div id="assistant-output" class="assistant-output">Tavsiya olish uchun savol yozing.</div>
                 </div>
-                <div class="panel-actions">
-                    <button class="btn-small" onclick="exportOrdersCSV()">📥 CSV</button>
-                    <button class="btn-small" onclick="clearOrders()">🗑 Tozalash</button>
-                </div>
-            </section>
 
-            <!-- Favorites Panel -->
-            <section class="panel favorites-panel">
-                <h2 class="panel-title">❤️ Sevimlilar</h2>
-                <div id="favorites-list" class="favorites-content">
-                    <p class="empty-state">Sevimlilar bo'sh</p>
+                <div class="panel-block compare-panel">
+                    <div class="panel-heading">
+                        <span>⚖️</span>
+                        <h2>Taqqoslash</h2>
+                    </div>
+                    <div id="compare-list" class="mini-list empty">Hali obyekt tanlanmagan.</div>
+                    <button class="btn btn-muted" id="clear-compare">Taqqoslashni tozalash</button>
                 </div>
-            </section>
+            </aside>
 
-            <!-- AI Assistant Panel -->
-            <section class="panel assistant-panel">
-                <h2 class="panel-title">🤖 AI Yordamchi</h2>
-                <input id="assistant-query" type="text" placeholder="Savol bering (xona, narx...)"
-                    class="assistant-input">
-                <button class="btn-primary" onclick="askAssistant()">So'rash</button>
-                <div id="assistant-output" class="assistant-output">
-                    <p class="empty-state">Yordamchiga savol bering</p>
+            <div class="catalog-area">
+                <div class="catalog-toolbar">
+                    <div>
+                        <span class="eyebrow">Katalog</span>
+                        <h2><span id="result-count">0</span> ta obyekt topildi</h2>
+                    </div>
+                    <div class="view-actions" role="group" aria-label="Katalog ko'rinishi">
+                        <button class="icon-button is-active" data-view="grid" aria-label="Grid ko'rinish">▦</button>
+                        <button class="icon-button" data-view="list" aria-label="List ko'rinish">☰</button>
+                    </div>
                 </div>
-            </section>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Search & Sort Bar -->
-            <div class="top-bar">
-                <input id="search" type="search" placeholder="Qidirish: manzil, nom..." class="search-input">
-                <div class="top-bar-actions">
-                    <button id="view-toggle" class="btn-icon" title="Ko'rinish o'zgartirish">⊞</button>
-                </div>
+                <div id="house-list" class="house-grid"></div>
+                <section id="info" class="detail-panel hidden" aria-live="polite"></section>
             </div>
+        </section>
 
-            <!-- Houses Grid -->
-            <div id="house-list" class="grid"></div>
+        <section id="orders" class="section-shell operations-grid">
+            <article class="orders-card">
+                <div class="panel-heading">
+                    <span>📋</span>
+                    <h2>Buyurtmalar CRM</h2>
+                </div>
+                <div id="orders-list" class="orders-list empty">Buyurtma yo'q.</div>
+                <div class="button-row">
+                    <button class="btn btn-primary" id="export-orders">CSV eksport</button>
+                    <button class="btn btn-muted" id="clear-orders">Tozalash</button>
+                </div>
+            </article>
+            <article class="orders-card">
+                <div class="panel-heading">
+                    <span>❤️</span>
+                    <h2>Sevimlilar</h2>
+                </div>
+                <div id="favorites-list" class="mini-list empty">Sevimlilar bo'sh.</div>
+            </article>
+        </section>
+    </main>
 
-            <!-- House Detail Panel -->
-            <section id="info" class="info-panel hidden"></section>
-        </main>
-    </div>
-
-    <!-- 3D Viewer Modal -->
-    <div id="viewer-modal" class="modal hidden" role="dialog" aria-hidden="true">
-        <div class="modal-content modal-large">
-            <div class="modal-header">
-                <h2>3D Ko'rish</h2>
-                <button id="close-viewer" class="close-btn">✕</button>
+    <div id="viewer-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+        <div class="modal-content">
+            <button class="modal-close" id="close-viewer" aria-label="3D oynani yopish">×</button>
+            <div class="modal-heading">
+                <span class="eyebrow">3D preview</span>
+                <h2 id="viewer-title">Uy modeli</h2>
+                <p id="viewer-subtitle">Sichqoncha bilan aylantiring yoki demo maketni tomosha qiling.</p>
             </div>
-            <div id="viewer" class="viewer-3d"></div>
+            <div id="viewer" class="viewer-stage"></div>
         </div>
     </div>
 
-    <!-- Order Form Modal -->
-    <div id="order-modal" class="modal hidden" role="dialog" aria-hidden="true">
-        <div class="modal-content modal-small">
-            <div class="modal-header">
-                <h2>Buyurtma Formasi</h2>
-                <button class="close-btn" onclick="closeOrderModal()">✕</button>
-            </div>
-            <form id="order-form" class="order-form" onsubmit="handleOrderSubmit(event)">
-                <div class="form-group">
-                    <label>Ism Familya *</label>
-                    <input type="text" id="order-name" required>
-                </div>
-                <div class="form-group">
-                    <label>Telefon Raqam *</label>
-                    <input type="tel" id="order-phone" required>
-                </div>
-                <div class="form-group">
-                    <label>Email (ixtiyoriy)</label>
-                    <input type="email" id="order-email">
-                </div>
-                <div class="form-group">
-                    <label>Izoh</label>
-                    <textarea id="order-note" rows="3" placeholder="Maxsus talablar..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Buyurtmani Yuborish</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast hidden"></div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 3D Uy Platforma | Samarqand | <a href="#">Qo'llab-quvvatlash</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 
 </html>
